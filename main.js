@@ -24,26 +24,8 @@ cards.forEach((card, i) => {
 container.addEventListener("click", (e) => {
   if (currentPairCheck.length === 2) {
     if (currentPairCheck[0].textContent === currentPairCheck[1].textContent) {
-      console.log(`Match ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
-
-      currentPairCheck[0].classList.add("bg-emerald-400");
-      currentPairCheck[0].classList.add("pointer-events-none");
-
-      currentPairCheck[1].classList.add("bg-emerald-400");
-      currentPairCheck[1].classList.add("pointer-events-none");
-
       currentPairCheck = [];
     } else {
-      console.log(`Diffrent ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
-
-      currentPairCheck[0].querySelector("span").classList.toggle("opacity-0");
-      currentPairCheck[0].querySelector("span").classList.add("transition-opacity");
-      currentPairCheck[0].classList.remove("pointer-events-none");
-
-      currentPairCheck[1].querySelector("span").classList.toggle("opacity-0");
-      currentPairCheck[1].querySelector("span").classList.add("transition-opacity");
-      currentPairCheck[1].classList.remove("pointer-events-none");
-
       currentPairCheck = [];
     }
   } else {
@@ -55,8 +37,30 @@ container.addEventListener("click", (e) => {
         currentPairCheck.push(e.target);
 
         currentPairCheck[0].classList.add("pointer-events-none");
-        console.log(currentPairCheck[0].textContent);
-      } else {
+
+        if (currentPairCheck[0].textContent === currentPairCheck[1].textContent) {
+          setTimeout(() => {
+            console.log(`Match ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
+
+            currentPairCheck[0].classList.add("bg-emerald-400");
+            currentPairCheck[0].classList.add("pointer-events-none");
+
+            currentPairCheck[1].classList.add("bg-emerald-400");
+            currentPairCheck[1].classList.add("pointer-events-none");
+          }, 500);
+        } else {
+          setTimeout(() => {
+            console.log(`Diffrent ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
+
+            currentPairCheck[0].querySelector("span").classList.toggle("opacity-0");
+            currentPairCheck[0].querySelector("span").classList.add("transition-opacity");
+            currentPairCheck[0].classList.remove("pointer-events-none");
+
+            currentPairCheck[1].querySelector("span").classList.toggle("opacity-0");
+            currentPairCheck[1].querySelector("span").classList.add("transition-opacity");
+            currentPairCheck[1].classList.remove("pointer-events-none");
+          }, 500);
+        }
       }
     }
   }
