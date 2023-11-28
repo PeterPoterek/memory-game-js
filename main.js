@@ -38,9 +38,11 @@ container.addEventListener("click", (e) => {
 
       currentPairCheck[0].querySelector("span").classList.toggle("opacity-0");
       currentPairCheck[0].querySelector("span").classList.add("transition-opacity");
+      currentPairCheck[0].classList.remove("pointer-events-none");
 
       currentPairCheck[1].querySelector("span").classList.toggle("opacity-0");
       currentPairCheck[1].querySelector("span").classList.add("transition-opacity");
+      currentPairCheck[1].classList.remove("pointer-events-none");
 
       currentPairCheck = [];
     }
@@ -51,7 +53,9 @@ container.addEventListener("click", (e) => {
 
       if (currentPairCheck.length !== 2) {
         currentPairCheck.push(e.target);
-        console.log(currentPairCheck);
+
+        currentPairCheck[0].classList.add("pointer-events-none");
+        console.log(currentPairCheck[0].textContent);
       } else {
       }
     }
