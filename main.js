@@ -9,7 +9,7 @@ const fruitPairs = fruits.flatMap((fruit) => {
 
 const shuffledfruits = fruitPairs.sort(() => Math.random() - 0.5);
 
-const cards = document.querySelectorAll("#card");
+const cards = document.querySelectorAll(".card");
 
 cards.forEach((card, i) => {
   const cardContent = document.createElement("span");
@@ -20,7 +20,8 @@ cards.forEach((card, i) => {
   card.append(cardContent);
 });
 container.addEventListener("click", (e) => {
-  if (e.target.id === "card") {
+  if (e.target.classList.contains("card")) {
+    console.log(e.target.innerHTML);
     e.target.querySelector("span").classList.toggle("opacity-0");
   }
 });
