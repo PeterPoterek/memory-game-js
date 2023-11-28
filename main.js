@@ -23,5 +23,6 @@ container.addEventListener("click", (e) => {
   if (e.target.classList.contains("card")) {
     console.log(e.target.innerHTML);
     e.target.querySelector("span").classList.toggle("opacity-0");
+    e.target.querySelector("span").classList.add("transition-opacity");
   }
 });
