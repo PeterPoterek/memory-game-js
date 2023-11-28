@@ -11,7 +11,10 @@ const shuffledfruits = fruitPairs.sort(() => Math.random() - 0.5);
 
 const cards = document.querySelectorAll("#card");
 cards.forEach((card, i) => {
-  card.innerHTML = shuffledfruits[i];
+  const cardContent = document.createElement("span");
+  cardContent.innerHTML = shuffledfruits[i];
+
+  card.append(cardContent);
 });
 container.addEventListener("click", (e) => {
   if (e.target.id === "card") {
