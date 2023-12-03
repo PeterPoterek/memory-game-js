@@ -76,9 +76,9 @@ container.addEventListener("click", (e) => {
 
 setInterval(() => {
   if (currentPairCheck[0]) {
-    console.log(currentPairCheck[0].textContent);
+    console.log(`Selected : ${currentPairCheck[0].textContent}`);
   }
   if (currentPairCheck[1]) {
-    console.log(currentPairCheck[1].textContent);
+    console.log(`Selected : ${currentPairCheck[1].textContent}`);
   }
 }, 1000);
