@@ -38,9 +38,10 @@ container.addEventListener("click", (e) => {
 
         currentPairCheck[0].classList.add("pointer-events-none");
 
-        if (currentPairCheck[0].textContent === currentPairCheck[1].textContent) {
+        if (currentPairCheck.length === 2 && currentPairCheck[0].textContent === currentPairCheck[1].textContent) {
           setTimeout(() => {
             console.log(`Match ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
+            console.log(` ${currentPairCheck[0]} ${currentPairCheck[1]}`);
 
             currentPairCheck[0].classList.add("bg-emerald-400");
             currentPairCheck[0].classList.add("pointer-events-none");
@@ -50,15 +51,17 @@ container.addEventListener("click", (e) => {
           }, 500);
         } else {
           setTimeout(() => {
-            console.log(`Diffrent ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
+            if (currentPairCheck.length === 2 && currentPairCheck[0].textContent !== currentPairCheck[1].textContent) {
+              console.log(`Diffrent ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
 
-            currentPairCheck[0].querySelector("span").classList.toggle("opacity-0");
-            currentPairCheck[0].querySelector("span").classList.add("transition-opacity");
-            currentPairCheck[0].classList.remove("pointer-events-none");
+              currentPairCheck[0].querySelector("span").classList.toggle("opacity-0");
+              currentPairCheck[0].querySelector("span").classList.add("transition-opacity");
+              currentPairCheck[0].classList.remove("pointer-events-none");
 
-            currentPairCheck[1].querySelector("span").classList.toggle("opacity-0");
-            currentPairCheck[1].querySelector("span").classList.add("transition-opacity");
-            currentPairCheck[1].classList.remove("pointer-events-none");
+              currentPairCheck[1].querySelector("span").classList.toggle("opacity-0");
+              currentPairCheck[1].querySelector("span").classList.add("transition-opacity");
+              currentPairCheck[1].classList.remove("pointer-events-none");
+            }
           }, 500);
         }
       }
