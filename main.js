@@ -4,7 +4,6 @@ const container = document.querySelector("#container");
 
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍇", "🍊"];
 
-const shuffleFruits = () => {};
 const fruitPairs = fruits.flatMap((fruit) => {
   return [fruit, fruit];
 });
