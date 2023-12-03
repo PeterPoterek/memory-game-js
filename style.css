@@ -6,6 +6,9 @@
   transform: rotateY(180deg);
 }
 
+.cardContainer {
+  perspective: 3000px;
+}
 .card {
   transition: transform 1000ms;
   transform-style: preserve-3d;

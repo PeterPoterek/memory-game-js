@@ -14,6 +14,7 @@ const cards = document.querySelectorAll(".card");
 cards.forEach((card, i) => {
   const front = card.querySelector(".front");
   front.textContent = shuffledfruits[i];
+  // card.classList.toggle("rotate");
 });
 
 cardContainer.addEventListener("click", (event) => {
