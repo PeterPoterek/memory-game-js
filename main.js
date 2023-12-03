@@ -1,3 +1,5 @@
+import "animate.css";
+
 const container = document.querySelector("#container");
 
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍇", "🍊"];
@@ -55,10 +57,12 @@ container.addEventListener("click", (e) => {
             if (currentPairCheck.length === 2 && currentPairCheck[0].textContent !== currentPairCheck[1].textContent) {
               console.log(`Diffrent ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
 
+              currentPairCheck[0].classList.add("animate__animated", "animate__shakeX", "animate__faster");
               currentPairCheck[0].querySelector("span").classList.toggle("opacity-0");
               currentPairCheck[0].querySelector("span").classList.add("transition-opacity");
               currentPairCheck[0].classList.remove("pointer-events-none");
 
+              currentPairCheck[1].classList.add("animate__animated", "animate__shakeX", "animate__faster");
               currentPairCheck[1].querySelector("span").classList.toggle("opacity-0");
               currentPairCheck[1].querySelector("span").classList.add("transition-opacity");
               currentPairCheck[1].classList.remove("pointer-events-none");
