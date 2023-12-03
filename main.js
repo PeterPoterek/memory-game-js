@@ -41,14 +41,17 @@ container.addEventListener("click", (e) => {
         if (currentPairCheck.length === 2 && currentPairCheck[0].textContent === currentPairCheck[1].textContent) {
           setTimeout(() => {
             console.log(`Match ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
-            console.log(` ${currentPairCheck[0]} ${currentPairCheck[1]}`);
 
+            currentPairCheck[0].classList.remove("bg-gray-700");
             currentPairCheck[0].classList.add("bg-emerald-400");
             currentPairCheck[0].classList.add("pointer-events-none");
 
+            currentPairCheck[1].classList.remove("bg-gray-700");
             currentPairCheck[1].classList.add("bg-emerald-400");
             currentPairCheck[1].classList.add("pointer-events-none");
-          }, 500);
+
+            currentPairCheck = [];
+          }, 200);
         } else {
           setTimeout(() => {
             if (currentPairCheck.length === 2 && currentPairCheck[0].textContent !== currentPairCheck[1].textContent) {
@@ -61,6 +64,8 @@ container.addEventListener("click", (e) => {
               currentPairCheck[1].querySelector("span").classList.toggle("opacity-0");
               currentPairCheck[1].querySelector("span").classList.add("transition-opacity");
               currentPairCheck[1].classList.remove("pointer-events-none");
+
+              currentPairCheck = [];
             }
           }, 500);
         }
@@ -68,3 +73,12 @@ container.addEventListener("click", (e) => {
     }
   }
 });
+
+setInterval(() => {
+  if (currentPairCheck[0]) {
+    console.log(currentPairCheck[0].textContent);
+  }
+  if (currentPairCheck[1]) {
+    console.log(currentPairCheck[1].textContent);
+  }
+}, 1000);
