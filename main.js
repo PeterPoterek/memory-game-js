@@ -42,12 +42,10 @@ container.addEventListener("click", (e) => {
           setTimeout(() => {
             console.log(`Match ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
 
-            currentPairCheck[0].classList.remove("bg-gray-700");
-            currentPairCheck[0].classList.add("bg-emerald-400");
+            currentPairCheck[0].classList.replace("bg-gray-700", "bg-emerald-400");
             currentPairCheck[0].classList.add("pointer-events-none");
 
-            currentPairCheck[1].classList.remove("bg-gray-700");
-            currentPairCheck[1].classList.add("bg-emerald-400");
+            currentPairCheck[1].classList.replace("bg-gray-700", "bg-emerald-400");
             currentPairCheck[1].classList.add("pointer-events-none");
 
             currentPairCheck = [];
