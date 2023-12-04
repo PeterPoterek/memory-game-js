@@ -10,6 +10,7 @@ const cardContainer = document.querySelector(".cardContainer");
 const cards = document.querySelectorAll(".card");
 
 let currentPairCheck = [];
+let isProcessing = false;
 
 cards.forEach((card, i) => {
   const front = card.querySelector(".front");
@@ -34,6 +35,7 @@ const handleCardsSame = (currentPairCheck) => {
 
     console.log(`${firstCardIcon} ${secondCardIcon} - Same`);
     currentPairCheck.length = 0;
+    isProcessing = false;
   }, 500);
 };
 const handleCardsDiffrent = (currentPairCheck) => {
@@ -45,18 +47,20 @@ const handleCardsDiffrent = (currentPairCheck) => {
   setTimeout(() => {
     firstCard.classList.toggle("rotate");
     secondCard.classList.toggle("rotate");
-    console.log(`${firstCardFront} ${secondCardFront} - Diffrent`);
 
     firstCard.classList.remove("pointer-events-none");
     secondCard.classList.remove("pointer-events-none");
-  }, 700);
+
+    console.log(`${firstCardFront} ${secondCardFront} - Diffrent`);
+    isProcessing = false;
+  }, 1000);
   currentPairCheck.length = 0;
 };
 
 cardContainer.addEventListener("click", (e) => {
   const clickedCard = e.target.closest(".card");
 
-  if (clickedCard) {
+  if (clickedCard && !isProcessing) {
     if (currentPairCheck.length < 2) {
       // 1 card is selected
       clickedCard.classList.toggle("rotate");
@@ -67,6 +71,7 @@ cardContainer.addEventListener("click", (e) => {
 
     if (currentPairCheck.length === 2) {
       //2 cards are selected - compare
+      isProcessing = true;
 
       const firstCardIcon = currentPairCheck[0].children[0].textContent;
       const secondCardIcon = currentPairCheck[1].children[0].textContent;
