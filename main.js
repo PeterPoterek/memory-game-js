@@ -1,7 +1,5 @@
 import "animate.css";
 
-const container = document.querySelector("#container");
-
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍇", "🍊"];
 
 const fruitPairs = fruits.flatMap((fruit) => [fruit, fruit]);
@@ -21,18 +19,33 @@ cards.forEach((card, i) => {
 const handleCardsSame = (currentPairCheck) => {
   const [firstCard, secondCard] = currentPairCheck;
 
-  const firstCardIcon = firstCard.children[0].textContent;
-  const secondCardIcon = secondCard.children[0].textContent;
+  const firstCardFront = firstCard.children[0].textContent;
+  const secondCardFront = secondCard.children[0].textContent;
 
-  console.log(`${firstCardIcon} ${secondCardIcon} - Same`);
+  firstCard.classList.add("pointer-events-none");
+  firstCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
+
+  secondCard.classList.add("pointer-events-none");
+  secondCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
+
+  console.log(`${firstCardFront} ${secondCardFront} - Same`);
+  currentPairCheck.length = 0;
 };
 const handleCardsDiffrent = (currentPairCheck) => {
   const [firstCard, secondCard] = currentPairCheck;
 
-  const firstCardIcon = firstCard.children[0].textContent;
-  const secondCardIcon = secondCard.children[0].textContent;
+  const firstCardFront = firstCard.children[0].textContent;
+  const secondCardFront = secondCard.children[0].textContent;
 
-  console.log(`${firstCardIcon} ${secondCardIcon} - Diffrent`);
+  setTimeout(() => {
+    firstCard.classList.toggle("rotate");
+    secondCard.classList.toggle("rotate");
+    console.log(`${firstCardFront} ${secondCardFront} - Diffrent`);
+
+    firstCard.classList.remove("pointer-events-none");
+    secondCard.classList.remove("pointer-events-none");
+  }, 700);
+  currentPairCheck.length = 0;
 };
 
 cardContainer.addEventListener("click", (e) => {
@@ -50,15 +63,16 @@ cardContainer.addEventListener("click", (e) => {
     if (currentPairCheck.length === 2) {
       //2 cards are selected - compare
 
-      const firstCard = currentPairCheck[0].children[0].textContent;
-      const secondCard = currentPairCheck[1].children[0].textContent;
+      const firstCardIcon = currentPairCheck[0].children[0].textContent;
+      const secondCardIcon = currentPairCheck[1].children[0].textContent;
 
-      firstCard === secondCard ? handleCardsSame(currentPairCheck) : handleCardsDiffrent(currentPairCheck);
+      firstCardIcon === secondCardIcon ? handleCardsSame(currentPairCheck) : handleCardsDiffrent(currentPairCheck);
     }
   }
 });
 
 setInterval(() => {
+  console.log(currentPairCheck.length);
   if (currentPairCheck[0]) {
     console.log(currentPairCheck[0].children[0].textContent);
   }
