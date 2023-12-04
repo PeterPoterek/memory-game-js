@@ -19,17 +19,22 @@ cards.forEach((card, i) => {
 const handleCardsSame = (currentPairCheck) => {
   const [firstCard, secondCard] = currentPairCheck;
 
-  const firstCardFront = firstCard.children[0].textContent;
-  const secondCardFront = secondCard.children[0].textContent;
+  const firstCardIcon = firstCard.children[0].textContent;
+  const secondCardIcon = secondCard.children[0].textContent;
 
-  firstCard.classList.add("pointer-events-none");
-  firstCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
+  const firstCardFront = firstCard.children[0];
+  const secondCardFront = secondCard.children[0];
 
-  secondCard.classList.add("pointer-events-none");
-  secondCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
+  setTimeout(() => {
+    firstCard.classList.add("pointer-events-none");
+    firstCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
 
-  console.log(`${firstCardFront} ${secondCardFront} - Same`);
-  currentPairCheck.length = 0;
+    secondCard.classList.add("pointer-events-none");
+    secondCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
+
+    console.log(`${firstCardIcon} ${secondCardIcon} - Same`);
+    currentPairCheck.length = 0;
+  }, 500);
 };
 const handleCardsDiffrent = (currentPairCheck) => {
   const [firstCard, secondCard] = currentPairCheck;
