@@ -2,8 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.transition-opacity {
-  transition-property: opacity;
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
+.rotate {
+  transform: rotateY(180deg);
+}
+
+.cardContainer {
+  perspective: 3000px;
+}
+.card {
+  transition: transform 1000ms;
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY(180deg);
 }

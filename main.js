@@ -1,85 +1,92 @@
 import "animate.css";
 
-const container = document.querySelector("#container");
-
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍇", "🍊"];
 
-const fruitPairs = fruits.flatMap((fruit) => {
-  return [fruit, fruit];
-});
+const fruitPairs = fruits.flatMap((fruit) => [fruit, fruit]);
 
 const shuffledfruits = fruitPairs.sort(() => Math.random() - 0.5);
 
+const cardContainer = document.querySelector(".cardContainer");
 const cards = document.querySelectorAll(".card");
 
 let currentPairCheck = [];
+let isProcessing = false;
 
 cards.forEach((card, i) => {
-  const cardContent = document.createElement("span");
-
-  cardContent.classList.add("opacity-0", "pointer-events-none");
-  cardContent.innerHTML = shuffledfruits[i];
-
-  card.append(cardContent);
+  const front = card.querySelector(".front");
+  front.textContent = shuffledfruits[i];
 });
-container.addEventListener("click", (e) => {
-  if (currentPairCheck.length === 2) {
-    if (currentPairCheck[0].textContent === currentPairCheck[1].textContent) {
-      currentPairCheck = [];
-    } else {
-      currentPairCheck = [];
+
+const handleCardsSame = (currentPairCheck) => {
+  const [firstCard, secondCard] = currentPairCheck;
+
+  const firstCardIcon = firstCard.children[0].textContent;
+  const secondCardIcon = secondCard.children[0].textContent;
+
+  const firstCardFront = firstCard.children[0];
+  const secondCardFront = secondCard.children[0];
+
+  setTimeout(() => {
+    firstCard.classList.add("pointer-events-none");
+    firstCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
+
+    secondCard.classList.add("pointer-events-none");
+    secondCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
+
+    console.log(`${firstCardIcon} ${secondCardIcon} - Same`);
+    currentPairCheck.length = 0;
+    isProcessing = false;
+  }, 500);
+};
+const handleCardsDiffrent = (currentPairCheck) => {
+  const [firstCard, secondCard] = currentPairCheck;
+
+  const firstCardFront = firstCard.children[0].textContent;
+  const secondCardFront = secondCard.children[0].textContent;
+
+  setTimeout(() => {
+    firstCard.classList.toggle("rotate");
+    secondCard.classList.toggle("rotate");
+
+    firstCard.classList.remove("pointer-events-none");
+    secondCard.classList.remove("pointer-events-none");
+
+    console.log(`${firstCardFront} ${secondCardFront} - Diffrent`);
+    isProcessing = false;
+  }, 1000);
+  currentPairCheck.length = 0;
+};
+
+cardContainer.addEventListener("click", (e) => {
+  const clickedCard = e.target.closest(".card");
+
+  if (clickedCard && !isProcessing) {
+    if (currentPairCheck.length < 2) {
+      // 1 card is selected
+      clickedCard.classList.toggle("rotate");
+      currentPairCheck.push(clickedCard);
+
+      clickedCard.classList.add("pointer-events-none");
     }
-  } else {
-    if (e.target.classList.contains("card")) {
-      e.target.querySelector("span").classList.toggle("opacity-0");
-      e.target.querySelector("span").classList.add("transition-opacity");
 
-      if (currentPairCheck.length !== 2) {
-        currentPairCheck.push(e.target);
+    if (currentPairCheck.length === 2) {
+      //2 cards are selected - compare
+      isProcessing = true;
 
-        currentPairCheck[0].classList.add("pointer-events-none");
+      const firstCardIcon = currentPairCheck[0].children[0].textContent;
+      const secondCardIcon = currentPairCheck[1].children[0].textContent;
 
-        if (currentPairCheck.length === 2 && currentPairCheck[0].textContent === currentPairCheck[1].textContent) {
-          setTimeout(() => {
-            console.log(`Match ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
-
-            currentPairCheck[0].classList.replace("bg-gray-700", "bg-emerald-400");
-            currentPairCheck[0].classList.add("pointer-events-none");
-
-            currentPairCheck[1].classList.replace("bg-gray-700", "bg-emerald-400");
-            currentPairCheck[1].classList.add("pointer-events-none");
-
-            currentPairCheck = [];
-          }, 200);
-        } else {
-          setTimeout(() => {
-            if (currentPairCheck.length === 2 && currentPairCheck[0].textContent !== currentPairCheck[1].textContent) {
-              console.log(`Diffrent ${currentPairCheck[0].textContent} ${currentPairCheck[1].textContent}`);
-
-              currentPairCheck[0].classList.add("animate__animated", "animate__shakeX", "animate__faster");
-              currentPairCheck[0].querySelector("span").classList.toggle("opacity-0");
-              currentPairCheck[0].querySelector("span").classList.add("transition-opacity");
-              currentPairCheck[0].classList.remove("pointer-events-none");
-
-              currentPairCheck[1].classList.add("animate__animated", "animate__shakeX", "animate__faster");
-              currentPairCheck[1].querySelector("span").classList.toggle("opacity-0");
-              currentPairCheck[1].querySelector("span").classList.add("transition-opacity");
-              currentPairCheck[1].classList.remove("pointer-events-none");
-
-              currentPairCheck = [];
-            }
-          }, 500);
-        }
-      }
+      firstCardIcon === secondCardIcon ? handleCardsSame(currentPairCheck) : handleCardsDiffrent(currentPairCheck);
     }
   }
 });
 
 setInterval(() => {
+  console.log(currentPairCheck.length);
   if (currentPairCheck[0]) {
-    console.log(`Selected : ${currentPairCheck[0].textContent}`);
+    console.log(currentPairCheck[0].children[0].textContent);
   }
   if (currentPairCheck[1]) {
-    console.log(`Selected : ${currentPairCheck[1].textContent}`);
+    console.log(currentPairCheck[1].children[0].textContent);
   }
 }, 1000);
