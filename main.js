@@ -9,11 +9,13 @@ const shuffledfruits = fruitPairs.sort(() => Math.random() - 0.5);
 const cardContainer = document.querySelector(".cardContainer");
 const cards = document.querySelectorAll(".card");
 
-let cardWrapper;
 const cardWrapperClasses = ["transition", "ease-in-out", "hover:-translate-y-1", "hover:scale-105"];
 
 let currentPairCheck = [];
 let isProcessing = false;
+
+const cardSameAnimDelay = 500;
+const cardDiffrentAnimDelay = 1500;
 
 cards.forEach((card, i) => {
   const front = card.querySelector(".front");
@@ -39,7 +41,7 @@ const handleCardsSame = (currentPairCheck) => {
     console.log(`${firstCardIcon} ${secondCardIcon} - Same`);
     currentPairCheck.length = 0;
     isProcessing = false;
-  }, 500);
+  }, cardSameAnimDelay);
 };
 const handleCardsDiffrent = (currentPairCheck) => {
   const [firstCard, secondCard] = currentPairCheck;
@@ -50,7 +52,7 @@ const handleCardsDiffrent = (currentPairCheck) => {
   setTimeout(() => {
     firstCard.children[0].classList.replace("bg-gray-700", "bg-red-500");
     secondCard.children[0].classList.replace("bg-gray-700", "bg-red-500");
-  }, 500);
+  }, cardSameAnimDelay);
 
   setTimeout(() => {
     firstCard.classList.toggle("rotate");
@@ -67,7 +69,7 @@ const handleCardsDiffrent = (currentPairCheck) => {
 
     console.log(`${firstCardFront} ${secondCardFront} - Diffrent`);
     isProcessing = false;
-  }, 1500);
+  }, cardDiffrentAnimDelay);
 
   currentPairCheck.length = 0;
 };
