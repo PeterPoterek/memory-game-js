@@ -45,15 +45,24 @@ const handleCardsDiffrent = (currentPairCheck) => {
   const secondCardFront = secondCard.children[0].textContent;
 
   setTimeout(() => {
+    firstCard.children[0].classList.replace("bg-gray-700", "bg-red-500");
+    secondCard.children[0].classList.replace("bg-gray-700", "bg-red-500");
+  }, 500);
+
+  setTimeout(() => {
     firstCard.classList.toggle("rotate");
     secondCard.classList.toggle("rotate");
 
     firstCard.classList.remove("pointer-events-none");
     secondCard.classList.remove("pointer-events-none");
 
+    firstCard.children[0].classList.replace("bg-red-500", "bg-gray-700");
+    secondCard.children[0].classList.replace("bg-red-500", "bg-gray-700");
+
     console.log(`${firstCardFront} ${secondCardFront} - Diffrent`);
     isProcessing = false;
-  }, 1000);
+  }, 1500);
+
   currentPairCheck.length = 0;
 };
 
