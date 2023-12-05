@@ -9,6 +9,9 @@ const shuffledfruits = fruitPairs.sort(() => Math.random() - 0.5);
 const cardContainer = document.querySelector(".cardContainer");
 const cards = document.querySelectorAll(".card");
 
+let cardWrapper;
+const cardWrapperClasses = ["transition", "ease-in-out", "hover:-translate-y-1", "hover:scale-105"];
+
 let currentPairCheck = [];
 let isProcessing = false;
 
@@ -56,6 +59,9 @@ const handleCardsDiffrent = (currentPairCheck) => {
     firstCard.classList.remove("pointer-events-none");
     secondCard.classList.remove("pointer-events-none");
 
+    firstCard.parentNode.classList.add(...cardWrapperClasses);
+    secondCard.parentNode.classList.add(...cardWrapperClasses);
+
     firstCard.children[0].classList.replace("bg-red-500", "bg-gray-700");
     secondCard.children[0].classList.replace("bg-red-500", "bg-gray-700");
 
@@ -68,6 +74,7 @@ const handleCardsDiffrent = (currentPairCheck) => {
 
 cardContainer.addEventListener("click", (e) => {
   const clickedCard = e.target.closest(".card");
+  const clickedCardWrapper = e.target.closest(".cardWrapper");
 
   if (clickedCard && !isProcessing) {
     if (currentPairCheck.length < 2) {
@@ -76,6 +83,7 @@ cardContainer.addEventListener("click", (e) => {
       currentPairCheck.push(clickedCard);
 
       clickedCard.classList.add("pointer-events-none");
+      clickedCardWrapper.classList.remove(...cardWrapperClasses);
     }
 
     if (currentPairCheck.length === 2) {
