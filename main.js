@@ -20,6 +20,9 @@ let isProcessing = false;
 const cardSameAnimDelay = 500;
 const cardDiffrentAnimDelay = 1500;
 
+const winScreen = document.querySelector("#win-screen");
+const showWinScreenDelay = 100;
+
 const shuffleFruits = () => {
   cards.forEach((card, i) => {
     const front = card.querySelector(".front");
@@ -32,6 +35,10 @@ let pairGuessed = 0;
 const handleWin = async () => {
   console.log("Win");
   await jsConfetti.addConfetti({ emojis: fruits });
+
+  setTimeout(() => {
+    winScreen.classList.replace("hidden", "flex");
+  }, showWinScreenDelay);
 };
 
 const addGuessedPair = () => {

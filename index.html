@@ -5,7 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Vite App</title>
+
+    <title>Memory Game</title>
   </head>
   <body class="center bg-slate-800 text-white">
     <div class="flex h-screen items-center justify-center">
@@ -131,6 +132,13 @@
               ></div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div id="win-screen" class="hidden fixed bg-black bg-opacity-60 w-full h-full justify-center items-center z-40">
+        <div class="flex justify-center items-center flex-col gap-5">
+          <h1 class="text-white text-5xl z-50">You win 🎉</h1>
+          <p class="text-4xl z-50">Your time was: <span>99:99</span></p>
         </div>
       </div>
     </div>
