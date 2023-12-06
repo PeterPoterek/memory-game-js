@@ -1,6 +1,9 @@
 import "animate.css";
+import JSConfetti from "js-confetti";
 
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍇", "🍊"];
+
+const jsConfetti = new JSConfetti();
 
 const fruitPairs = fruits.flatMap((fruit) => [fruit, fruit]);
 
@@ -26,12 +29,16 @@ const shuffleFruits = () => {
 
 let pairGuessed = 0;
 
-const handleWin = () => {
+const handleWin = async () => {
   console.log("Win");
+  await jsConfetti.addConfetti({ emojis: fruits });
 };
 
 const addGuessedPair = () => {
-  pairGuessed === fruitPairs.length / 2 ? handleWin() : pairGuessed++;
+  pairGuessed++;
+  if (pairGuessed === fruitPairs.length / 2) {
+    handleWin();
+  }
 };
 
 shuffleFruits();
@@ -118,9 +125,6 @@ cardContainer.addEventListener("click", (e) => {
 
 // Debug
 setInterval(() => {
-  console.log(pairGuessed, fruitPairs.length / 2);
-
-  console.log(`Pair guessed: ${pairGuessed}`);
   if (currentPairCheck[0]) {
     console.log(currentPairCheck[0].children[0].textContent);
   }
