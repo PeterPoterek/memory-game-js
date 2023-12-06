@@ -17,10 +17,24 @@ let isProcessing = false;
 const cardSameAnimDelay = 500;
 const cardDiffrentAnimDelay = 1500;
 
-cards.forEach((card, i) => {
-  const front = card.querySelector(".front");
-  front.textContent = shuffledfruits[i];
-});
+const shuffleFruits = () => {
+  cards.forEach((card, i) => {
+    const front = card.querySelector(".front");
+    front.textContent = shuffledfruits[i];
+  });
+};
+
+let pairGuessed = 0;
+
+const handleWin = () => {
+  console.log("Win");
+};
+
+const addGuessedPair = () => {
+  pairGuessed === fruitPairs.length / 2 ? handleWin() : pairGuessed++;
+};
+
+shuffleFruits();
 
 const handleCardsSame = (currentPairCheck) => {
   const [firstCard, secondCard] = currentPairCheck;
@@ -40,8 +54,10 @@ const handleCardsSame = (currentPairCheck) => {
 
     console.log(`${firstCardIcon} ${secondCardIcon} - Same`);
     currentPairCheck.length = 0;
+
     isProcessing = false;
   }, cardSameAnimDelay);
+  addGuessedPair();
 };
 const handleCardsDiffrent = (currentPairCheck) => {
   const [firstCard, secondCard] = currentPairCheck;
@@ -100,8 +116,11 @@ cardContainer.addEventListener("click", (e) => {
   }
 });
 
+// Debug
 setInterval(() => {
-  console.log(currentPairCheck.length);
+  console.log(pairGuessed, fruitPairs.length / 2);
+
+  console.log(`Pair guessed: ${pairGuessed}`);
   if (currentPairCheck[0]) {
     console.log(currentPairCheck[0].children[0].textContent);
   }
