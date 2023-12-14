@@ -11,6 +11,9 @@ const shuffledfruits = fruitPairs.sort(() => Math.random() - 0.5);
 
 const cardContainer = document.querySelector(".cardContainer");
 const cards = document.querySelectorAll(".card");
+const startButton = document.querySelector("#start-button");
+const startScreen = document.querySelector("#start-screen");
+const timerDisplay = document.querySelector("#timer");
 
 const cardWrapperClasses = ["transition", "ease-in-out", "hover:-translate-y-1", "hover:scale-105"];
 
@@ -23,6 +26,9 @@ const cardDiffrentAnimDelay = 1500;
 const winScreen = document.querySelector("#win-screen");
 const showWinScreenDelay = 100;
 
+let elapsedTime = 0;
+let timerInterval;
+
 const shuffleFruits = () => {
   cards.forEach((card, i) => {
     const front = card.querySelector(".front");
@@ -32,8 +38,29 @@ const shuffleFruits = () => {
 
 let pairGuessed = 0;
 
+const startTimer = () => {
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(() => {
+    elapsedTime++;
+    timerDisplay.textContent = formatTime(elapsedTime);
+  }, 1000);
+};
+
+const stopTimer = () => {
+  clearInterval(timerInterval);
+};
+
+const handleStartButtonClick = () => {
+  startScreen.classList.add("hidden");
+  startTimer();
+};
+
+startButton.addEventListener("click", handleStartButtonClick);
+
 const handleWin = async () => {
   console.log("Win");
+  stopTimer();
   await jsConfetti.addConfetti({ emojis: fruits });
 
   setTimeout(() => {
@@ -129,6 +156,14 @@ cardContainer.addEventListener("click", (e) => {
     }
   }
 });
+
+const formatTime = (seconds) => {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  return `${hours} Hours ${minutes} Minutes ${remainingSeconds} Seconds`;
+};
 
 // Debug
 setInterval(() => {
