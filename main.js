@@ -37,6 +37,27 @@ const shuffleFruits = () => {
 };
 
 let pairGuessed = 0;
+const formatTime = (seconds) => {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  let formattedTime = "";
+
+  if (hours > 0) {
+    formattedTime += `${hours} Hour${hours !== 1 ? "s" : ""} `;
+  }
+
+  if (minutes > 0 || (hours > 0 && remainingSeconds > 0)) {
+    formattedTime += `${minutes} Minute${minutes !== 1 ? "s" : ""} `;
+  }
+
+  if (remainingSeconds > 0 || (hours === 0 && minutes === 0)) {
+    formattedTime += `${remainingSeconds} Second${remainingSeconds !== 1 ? "s" : ""}`;
+  }
+
+  return formattedTime.trim();
+};
 
 const startTimer = () => {
   clearInterval(timerInterval);
@@ -156,14 +177,6 @@ cardContainer.addEventListener("click", (e) => {
     }
   }
 });
-
-const formatTime = (seconds) => {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const remainingSeconds = seconds % 60;
-
-  return `${hours} Hours ${minutes} Minutes ${remainingSeconds} Seconds`;
-};
 
 // Debug
 setInterval(() => {
