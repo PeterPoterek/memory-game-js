@@ -103,7 +103,6 @@ startButton.addEventListener("click", handleStartButtonClick);
 playAgainButton.addEventListener("click", handlePlayAgainButtonClick);
 
 const handleWin = async () => {
-  console.log("Win");
   stopTimer();
   await jsConfetti.addConfetti({ emojis: fruits });
 
@@ -137,7 +136,6 @@ const handleCardsSame = (currentPairCheck) => {
     secondCard.classList.add("pointer-events-none");
     secondCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
 
-    // console.log(`${firstCardIcon} ${secondCardIcon} - Same`);
     currentPairCheck.length = 0;
 
     isProcessing = false;
@@ -168,7 +166,6 @@ const handleCardsDiffrent = (currentPairCheck) => {
     firstCard.children[0].classList.replace("bg-red-500", "bg-gray-700");
     secondCard.children[0].classList.replace("bg-red-500", "bg-gray-700");
 
-    // console.log(`${firstCardFront} ${secondCardFront} - Diffrent`);
     isProcessing = false;
   }, cardDiffrentAnimDelay);
 
