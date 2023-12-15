@@ -14,6 +14,7 @@ const cards = document.querySelectorAll(".card");
 const startButton = document.querySelector("#start-button");
 const startScreen = document.querySelector("#start-screen");
 const timerDisplay = document.querySelector("#timer");
+const playAgainButton = document.querySelector("#play-again-button");
 
 const cardWrapperClasses = ["transition", "ease-in-out", "hover:-translate-y-1", "hover:scale-105"];
 
@@ -77,7 +78,27 @@ const handleStartButtonClick = () => {
   startTimer();
 };
 
+const handlePlayAgainButtonClick = () => {
+  elapsedTime = 0;
+  pairGuessed = 0;
+  currentPairCheck = [];
+  isProcessing = false;
+
+  cards.forEach((card) => {
+    card.classList.remove("rotate", "pointer-events-none");
+    card.classList.add("rotate");
+
+    console.log(card.children[0]);
+    card.children[0].classList.replace("bg-emerald-400", "bg-gray-700");
+  });
+
+  shuffleFruits();
+  winScreen.classList.replace("flex", "hidden");
+  startTimer();
+};
+
 startButton.addEventListener("click", handleStartButtonClick);
+playAgainButton.addEventListener("click", handlePlayAgainButtonClick);
 
 const handleWin = async () => {
   console.log("Win");
@@ -179,11 +200,11 @@ cardContainer.addEventListener("click", (e) => {
 });
 
 // Debug
-setInterval(() => {
-  if (currentPairCheck[0]) {
-    console.log(currentPairCheck[0].children[0].textContent);
-  }
-  if (currentPairCheck[1]) {
-    console.log(currentPairCheck[1].children[0].textContent);
-  }
-}, 1000);
+// setInterval(() => {
+//   if (currentPairCheck[0]) {
+//     console.log(currentPairCheck[0].children[0].textContent);
+//   }
+//   if (currentPairCheck[1]) {
+//     console.log(currentPairCheck[1].children[0].textContent);
+//   }
+// }, 1000);
