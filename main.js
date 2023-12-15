@@ -198,13 +198,3 @@ cardContainer.addEventListener("click", (e) => {
     }
   }
 });
-
-// Debug
-// setInterval(() => {
-//   if (currentPairCheck[0]) {
-//     console.log(currentPairCheck[0].children[0].textContent);
-//   }
-//   if (currentPairCheck[1]) {
-//     console.log(currentPairCheck[1].children[0].textContent);
-//   }
-// }, 1000);
