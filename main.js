@@ -7,7 +7,7 @@ const jsConfetti = new JSConfetti();
 
 const fruitPairs = fruits.flatMap((fruit) => [fruit, fruit]);
 
-const shuffledfruits = fruitPairs.sort(() => Math.random() - 0.5);
+let shuffledfruitsArr = fruitPairs.sort(() => Math.random() - 0.5);
 
 const cardContainer = document.querySelector(".cardContainer");
 const cards = document.querySelectorAll(".card");
@@ -33,8 +33,10 @@ let timerInterval;
 const shuffleFruits = () => {
   cards.forEach((card, i) => {
     const front = card.querySelector(".front");
-    front.textContent = shuffledfruits[i];
+    front.textContent = shuffledfruitsArr[i];
   });
+
+  console.log(shuffledfruitsArr);
 };
 
 let pairGuessed = 0;
@@ -88,12 +90,12 @@ const handlePlayAgainButtonClick = () => {
     card.classList.remove("rotate", "pointer-events-none");
     card.classList.add("rotate");
 
-    console.log(card.children[0]);
     card.children[0].classList.replace("bg-emerald-400", "bg-gray-700");
   });
 
-  shuffleFruits();
   winScreen.classList.replace("flex", "hidden");
+  shuffledfruitsArr = fruitPairs.sort(() => Math.random() - 0.5);
+  shuffleFruits();
   startTimer();
 };
 
@@ -135,7 +137,7 @@ const handleCardsSame = (currentPairCheck) => {
     secondCard.classList.add("pointer-events-none");
     secondCardFront.classList.replace("bg-gray-700", "bg-emerald-400");
 
-    console.log(`${firstCardIcon} ${secondCardIcon} - Same`);
+    // console.log(`${firstCardIcon} ${secondCardIcon} - Same`);
     currentPairCheck.length = 0;
 
     isProcessing = false;
@@ -166,7 +168,7 @@ const handleCardsDiffrent = (currentPairCheck) => {
     firstCard.children[0].classList.replace("bg-red-500", "bg-gray-700");
     secondCard.children[0].classList.replace("bg-red-500", "bg-gray-700");
 
-    console.log(`${firstCardFront} ${secondCardFront} - Diffrent`);
+    // console.log(`${firstCardFront} ${secondCardFront} - Diffrent`);
     isProcessing = false;
   }, cardDiffrentAnimDelay);
 
