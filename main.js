@@ -87,7 +87,7 @@ const handlePlayAgainButtonClick = () => {
   isProcessing = false;
 
   cards.forEach((card) => {
-    card.classList.remove("rotate", "pointer-events-none");
+    card.classList.remove("pointer-events-none");
     card.classList.add("rotate");
 
     card.children[0].classList.replace("bg-emerald-400", "bg-gray-700");
