@@ -35,8 +35,6 @@ const shuffleFruits = () => {
     const front = card.querySelector(".front");
     front.textContent = shuffledfruitsArr[i];
   });
-
-  console.log(shuffledfruitsArr);
 };
 
 let pairGuessed = 0;
@@ -95,7 +93,10 @@ const handlePlayAgainButtonClick = () => {
 
   winScreen.classList.replace("flex", "hidden");
   shuffledfruitsArr = fruitPairs.sort(() => Math.random() - 0.5);
-  shuffleFruits();
+
+  setTimeout(() => {
+    shuffleFruits();
+  }, 1000);
   startTimer();
 };
 
