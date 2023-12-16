@@ -9,12 +9,15 @@ const fruitPairs = fruits.flatMap((fruit) => [fruit, fruit]);
 
 let shuffledfruitsArr = fruitPairs.sort(() => Math.random() - 0.5);
 
+let wrongGuesses = 0;
+
 const cardContainer = document.querySelector(".cardContainer");
 const cards = document.querySelectorAll(".card");
 const startButton = document.querySelector("#start-button");
 const startScreen = document.querySelector("#start-screen");
 const timerDisplay = document.querySelector("#timer");
 const playAgainButton = document.querySelector("#play-again-button");
+const wrongGuessesDisplay = document.querySelector("#wrong-guesses");
 
 const cardWrapperClasses = ["transition", "ease-in-out", "hover:-translate-y-1", "hover:scale-105"];
 
@@ -145,6 +148,10 @@ const handleCardsSame = (currentPairCheck) => {
 };
 const handleCardsDiffrent = (currentPairCheck) => {
   const [firstCard, secondCard] = currentPairCheck;
+
+  wrongGuesses++;
+
+  wrongGuessesDisplay.textContent = wrongGuesses;
 
   const firstCardFront = firstCard.children[0].textContent;
   const secondCardFront = secondCard.children[0].textContent;
