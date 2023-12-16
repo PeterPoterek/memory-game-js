@@ -78,6 +78,7 @@ const stopTimer = () => {
 
 const handleStartButtonClick = () => {
   startScreen.classList.add("hidden");
+  wrongGuesses = 0;
   startTimer();
 };
 
