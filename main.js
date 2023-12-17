@@ -128,9 +128,6 @@ shuffleFruits();
 const handleCardsSame = (currentPairCheck) => {
   const [firstCard, secondCard] = currentPairCheck;
 
-  const firstCardIcon = firstCard.children[0].textContent;
-  const secondCardIcon = secondCard.children[0].textContent;
-
   const firstCardFront = firstCard.children[0];
   const secondCardFront = secondCard.children[0];
 
@@ -153,9 +150,6 @@ const handleCardsDiffrent = (currentPairCheck) => {
   wrongGuesses++;
 
   wrongGuessesDisplay.textContent = wrongGuesses;
-
-  const firstCardFront = firstCard.children[0].textContent;
-  const secondCardFront = secondCard.children[0].textContent;
 
   setTimeout(() => {
     firstCard.children[0].classList.replace("bg-gray-700", "bg-red-500");
