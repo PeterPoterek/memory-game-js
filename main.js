@@ -1,6 +1,8 @@
 import "animate.css";
 import JSConfetti from "js-confetti";
 
+import { startTimer, stopTimer, setElapsedTime } from "./timer.js";
+
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍇", "🍊"];
 
 const jsConfetti = new JSConfetti();
@@ -15,7 +17,6 @@ const cardContainer = document.querySelector(".cardContainer");
 const cards = document.querySelectorAll(".card");
 const startButton = document.querySelector("#start-button");
 const startScreen = document.querySelector("#start-screen");
-const timerDisplay = document.querySelector("#timer");
 const playAgainButton = document.querySelector("#play-again-button");
 const wrongGuessesDisplay = document.querySelector("#wrong-guesses");
 
@@ -30,9 +31,6 @@ const cardDiffrentAnimDelay = 1500;
 const winScreen = document.querySelector("#win-screen");
 const showWinScreenDelay = 100;
 
-let elapsedTime = 0;
-let timerInterval;
-
 const shuffleFruits = () => {
   cards.forEach((card, i) => {
     const front = card.querySelector(".front");
@@ -41,40 +39,6 @@ const shuffleFruits = () => {
 };
 
 let pairGuessed = 0;
-const formatTime = (seconds) => {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const remainingSeconds = seconds % 60;
-
-  let formattedTime = "";
-
-  if (hours > 0) {
-    formattedTime += `${hours} Hour${hours !== 1 ? "s" : ""} `;
-  }
-
-  if (minutes > 0 || (hours > 0 && remainingSeconds > 0)) {
-    formattedTime += `${minutes} Minute${minutes !== 1 ? "s" : ""} `;
-  }
-
-  if (remainingSeconds > 0 || (hours === 0 && minutes === 0)) {
-    formattedTime += `${remainingSeconds} Second${remainingSeconds !== 1 ? "s" : ""}`;
-  }
-
-  return formattedTime.trim();
-};
-
-const startTimer = () => {
-  clearInterval(timerInterval);
-
-  timerInterval = setInterval(() => {
-    elapsedTime++;
-    timerDisplay.textContent = formatTime(elapsedTime);
-  }, 1000);
-};
-
-const stopTimer = () => {
-  clearInterval(timerInterval);
-};
 
 const handleStartButtonClick = () => {
   startScreen.classList.add("hidden");
@@ -83,7 +47,7 @@ const handleStartButtonClick = () => {
 };
 
 const handlePlayAgainButtonClick = () => {
-  elapsedTime = 0;
+  setElapsedTime(0);
   pairGuessed = 0;
   currentPairCheck = [];
   isProcessing = false;
