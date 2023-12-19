@@ -2,6 +2,7 @@ import "animate.css";
 import JSConfetti from "js-confetti";
 
 import { startTimer, stopTimer, setElapsedTime } from "./timer.js";
+import { cardContainer, cards, startButton, startScreen, playAgainButton, wrongGuessesDisplay } from "./variables.js";
 
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍇", "🍊"];
 
@@ -12,13 +13,6 @@ const fruitPairs = fruits.flatMap((fruit) => [fruit, fruit]);
 let shuffledfruitsArr = fruitPairs.sort(() => Math.random() - 0.5);
 
 let wrongGuesses = 0;
-
-const cardContainer = document.querySelector(".cardContainer");
-const cards = document.querySelectorAll(".card");
-const startButton = document.querySelector("#start-button");
-const startScreen = document.querySelector("#start-screen");
-const playAgainButton = document.querySelector("#play-again-button");
-const wrongGuessesDisplay = document.querySelector("#wrong-guesses");
 
 const cardWrapperClasses = ["transition", "ease-in-out", "hover:-translate-y-1", "hover:scale-105"];
 
