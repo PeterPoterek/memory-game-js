@@ -137,19 +137,25 @@
         </div>
       </div>
 
-      <div id="win-screen" class="hidden fixed bg-black bg-opacity-60 w-full h-full justify-center items-center z-40">
-        <div class="flex justify-center items-center flex-col gap-5">
-          <h1 class="text-white text-6xl z-50">You win 🎉</h1>
-          <p class="text-5xl z-50">Your time was: <span id="timer">99:99:99</span></p>
-          <p class="text-5xl z-50">Wrong guesses: <span id="wrong-guesses" class="text-red-600">0</span></p>
-          <button
-            id="play-again-button"
-            class="text-4xl transition-transform ease-in-out duration-300 transform hover:scale-110 hover:-translate-y-1 bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-3 px-6 border border-blue-500 hover:border-transparent rounded"
-          >
-            Play Again
-          </button>
+      <div id="win-screen" class="hidden fixed bg-black bg-opacity-70 w-full h-full flex-col gap-10 justify-center items-center z-40">
+        <div class="flex justify-between flex-col gap-5 max-w-screen-sm">
+          <h1 class="flex justify-center text-white text-6xl z-50">You win 🎉</h1>
+          <p class="flex justify-between gap-10 text-3xl z-50">
+            Your score was: <span id="score-number-display" class="text-5xl text-amber-300 font-bold">0</span>
+          </p>
+          <p class="flex justify-between gap-10 text-3xl z-50">Your time was: <span class="text-5xl font-bold" id="timer">99:99:99</span></p>
+          <p class="flex justify-between text-3xl gap-10 z-50">
+            Wrong guesses: <span id="wrong-guesses" class="text-5xl text-red-600 font-bold">0</span>
+          </p>
         </div>
+        <button
+          id="play-again-button"
+          class="text-4xl transition-transform ease-in-out duration-300 transform hover:scale-110 hover:-translate-y-1 bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-3 px-6 border border-blue-500 hover:border-transparent rounded"
+        >
+          Play Again
+        </button>
       </div>
+
       <div id="start-screen" class="fixed bg-black bg-opacity-60 w-full h-full flex justify-center items-center z-40">
         <div class="flex justify-center items-center flex-col gap-5">
           <button

@@ -6,5 +6,18 @@ const playAgainButton = document.querySelector("#play-again-button");
 const wrongGuessesDisplay = document.querySelector("#wrong-guesses");
 const timerDisplay = document.querySelector("#timer");
 const winScreen = document.querySelector("#win-screen");
+const scoreTextDisplay = document.querySelector("#score-text-display");
+const scoreNumberDisplay = document.querySelector("#score-number-display");
 
-export { cardContainer, cards, startButton, startScreen, playAgainButton, wrongGuessesDisplay, timerDisplay, winScreen };
+export {
+  cardContainer,
+  cards,
+  startButton,
+  startScreen,
+  playAgainButton,
+  wrongGuessesDisplay,
+  timerDisplay,
+  winScreen,
+  scoreTextDisplay,
+  scoreNumberDisplay,
+};

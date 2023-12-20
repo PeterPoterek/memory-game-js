@@ -45,4 +45,4 @@ const stopTimer = () => {
   clearInterval(timerInterval);
 };
 
-export { startTimer, stopTimer, setElapsedTime };
+export { startTimer, stopTimer, setElapsedTime, getElapsedTime };
