@@ -9,7 +9,7 @@ import { getElapsedTime } from "./timer.js";
 
 const jsConfetti = new JSConfetti();
 
-const showWinScreenDelay = 100;
+const showWinScreenDelay = 500;
 
 const handleWin = async () => {
   stopTimer();
@@ -17,7 +17,9 @@ const handleWin = async () => {
 
   const score = calculateScore(getElapsedTime(), getWrongGuesses());
 
+  scoreTextDisplay.textContent = "Your score was: ";
   scoreNumberDisplay.textContent = score;
+  scoreTextDisplay.append(scoreNumberDisplay);
 
   setTimeout(() => {
     winScreen.classList.replace("hidden", "flex");
