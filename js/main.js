@@ -2,7 +2,7 @@ import "animate.css";
 import JSConfetti from "js-confetti";
 
 import { startTimer, stopTimer, setElapsedTime } from "./timer.js";
-import { cardContainer, cards, startButton, startScreen, playAgainButton, wrongGuessesDisplay } from "./variables.js";
+import { cardContainer, cards, startButton, startScreen, playAgainButton, wrongGuessesDisplay } from "./uiVariables.js";
 
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍇", "🍊"];
 
