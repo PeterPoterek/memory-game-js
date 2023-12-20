@@ -36,6 +36,7 @@ const handlePlayAgainButtonClick = () => {
   setElapsedTime(0);
   setPairGuessed(0);
   setWrongGuesses(0);
+
   currentPairCheck = [];
   setIsProcessing(false);
 
