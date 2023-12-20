@@ -1,7 +1,7 @@
 let elapsedTime = 0;
 let timerInterval;
 
-const timerDisplay = document.querySelector("#timer");
+import { timerDisplay } from "./uiVariables";
 
 const setElapsedTime = (value) => {
   elapsedTime = value;
