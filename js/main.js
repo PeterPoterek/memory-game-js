@@ -15,6 +15,8 @@ const cardWrapperClasses = ["transition", "ease-in-out", "hover:-translate-y-1",
 
 let currentPairCheck = [];
 
+document.body.style.overflow = "hidden";
+
 const shuffleFruits = () => {
   cards.forEach((card, i) => {
     const front = card.querySelector(".front");
@@ -28,6 +30,7 @@ const handleStartButtonClick = () => {
   setPairGuessed(0);
 
   startScreen.classList.add("hidden");
+  document.body.style.overflow = "auto";
 
   startTimer();
 };
