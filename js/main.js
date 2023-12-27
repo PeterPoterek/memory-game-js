@@ -85,6 +85,9 @@ cardContainer.addEventListener("click", (e) => {
       const firstCardIcon = currentPairCheck[0].children[0].textContent;
       const secondCardIcon = currentPairCheck[1].children[0].textContent;
 
+      currentPairCheck[0].blur();
+      currentPairCheck[1].blur();
+
       firstCardIcon === secondCardIcon ? handleCardsSame(currentPairCheck) : handleCardsDiffrent(currentPairCheck);
     }
   }
